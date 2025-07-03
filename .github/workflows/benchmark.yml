@@ -18,7 +18,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
       - name: Run benchmark
-        run: cd src/BinarySerializers && dotnet run --exporters json --filter '*'
+        run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
