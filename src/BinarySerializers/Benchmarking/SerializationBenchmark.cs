@@ -40,7 +40,7 @@ public class SerializationBenchmark
         var deserializedItem = MessagePackSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    /*[Benchmark]
+    [Benchmark]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_10()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[10]);
@@ -149,7 +149,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    /*[Benchmark]
+    [Benchmark]
     public void JsonSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[100]);
@@ -389,7 +389,7 @@ public class SerializationBenchmark
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
-    }*/
+    }
 
     #endregion
 }
