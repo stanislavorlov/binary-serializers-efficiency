@@ -33,11 +33,18 @@ jobs:
 
       - name: Store benchmark result in README.md
         run: |
-          awk '/<!-- BENCHMARK_START -->/,/<!-- BENCHMARK_END -->/ {next} {print}' README.md > temp/README.new
-          echo '<!-- BENCHMARK_START -->' >> temp/README.new
-          cat "${{ steps.find_report.outputs.report_file }}" > temp/README.new
-          echo '<!-- BENCHMARK_END -->' >> temp/README.new
-          mv temp/README.new README.md
+          start_marker="<!-- BENCHMARK_START -->"
+          end_marker="<!-- BENCHMARK_END -->"
+          temp_file="temp/README.new"
+
+          awk -v s="$start_marker" -v e="$end_marker" '
+            BEGIN {in_section=0}
+            $0 ~ s {print; print ""; while ((getline line < "temp/benchmark.md") > 0) print line; in_section=1; next}
+            $0 ~ e {in_section=0}
+            !in_section {print}
+          ' README.md > "$temp_file"
+
+          mv "$temp_file" README.md
 
       - name: Commit and push README.md
         run: |
