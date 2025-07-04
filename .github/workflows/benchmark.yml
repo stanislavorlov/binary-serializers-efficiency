@@ -19,7 +19,7 @@ jobs:
           dotnet-version: '8.0.x'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
           
       - name: Restore Dependencies
-        run: dotnet restore
+        run: cd src/BinarySerializers && dotnet restore
 
       - name: Run Benchmark
         run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
