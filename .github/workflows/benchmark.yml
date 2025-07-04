@@ -25,6 +25,7 @@ jobs:
         run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
 
       - name: Extract Benchmark Results
+        id: find_report
         run: |
            mkdir temp
            REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
