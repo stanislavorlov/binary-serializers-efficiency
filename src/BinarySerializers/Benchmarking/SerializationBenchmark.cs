@@ -40,14 +40,14 @@ public class SerializationBenchmark
         var deserializedItem = MessagePackSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_10()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[10]);
         var deserializedItem = MessagePackSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    /*[Benchmark]
+    [Benchmark]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[100]);
