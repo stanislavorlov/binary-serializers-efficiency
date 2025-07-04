@@ -19,12 +19,12 @@ internal class DataSource
 
     public List<DeviceTelemetry> GetSimpleObjects(int count)
     {
-        return _simpleObjects[count..];
+        return _simpleObjects.Take(count).ToList();
     }
 
     public List<Invoice> GetComplexObjects(int count)
     {
-        return _complexObjects[count..];
+        return _complexObjects.Take(count).ToList();
     }
 
     private DeviceTelemetry GetSimpleObject()

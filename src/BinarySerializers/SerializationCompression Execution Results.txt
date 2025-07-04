@@ -1,0 +1,63 @@
+﻿Start Benchmarking
+Benchmark summary is ready
+Comparing message sizes
+CompareSize_Of_MessagePack_To_JSON_SimpleObject
+MessagePack size in bytes: 84
+Json size in bytes: 230
+CompareSize_Of_MessagePack_To_JSON_1000_SimpleObject
+MessagePack size in bytes: 84003
+Json size in bytes: 228318
+CompareSize_Of_MessagePack_To_JSON_10000_SimpleObject
+MessagePack size in bytes: 840003
+Json size in bytes: 2282949
+CompareSize_Of_MessagePack_To_JSON_100000_SimpleObject
+MessagePack size in bytes: 8399999
+Json size in bytes: 22826834
+CompareSize_Of_MessagePack_To_JSON_1000000_SimpleObject
+MessagePack size in bytes: 83999959
+Json size in bytes: 228269301
+CompareSize_Of_MessagePack_To_JSON_ComplexObject
+MessagePack size in bytes: 303
+Json size in bytes: 744
+CompareSize_Of_MessagePack_To_JSON_1000_ComplexObject
+MessagePack size in bytes: 303003
+Json size in bytes: 742452
+CompareSize_Of_MessagePack_To_JSON_10000_ComplexObject
+MessagePack size in bytes: 3029999
+Json size in bytes: 7424232
+CompareSize_Of_MessagePack_To_JSON_100000_ComplexObject
+MessagePack size in bytes: 30299979
+Json size in bytes: 74245890
+CompareSize_Of_MessagePack_To_JSON_1000000_ComplexObject
+MessagePack size in bytes: 302999813
+Json size in bytes: 742447614
+CompareSize_Of_Protobuf_To_JSON_SimpleObject
+Protobuf size in bytes: 98
+Json size in bytes: 230
+CompareSize_Of_Protobuf_To_JSON_ComplexObject
+Protobuf size in bytes: 335
+Json size in bytes: 744
+CompareSize_Of_Protobuf_To_JSON_1000_SimpleObject
+Protobuf size in bytes: 99883
+Json size in bytes: 228346
+CompareSize_Of_Protobuf_To_JSON_10000_SimpleObject
+Protobuf size in bytes: 998709
+Json size in bytes: 2282646
+CompareSize_Of_Protobuf_To_JSON_100000_SimpleObject
+Protobuf size in bytes: 9987468
+Json size in bytes: 22827297
+CompareSize_Of_Protobuf_To_JSON_1000000_SimpleObject
+Protobuf size in bytes: 99873566
+Json size in bytes: 228267996
+CompareSize_Of_Protobuf_To_JSON_1000_ComplexObject
+Protobuf size in bytes: 334627
+Json size in bytes: 742484
+CompareSize_Of_Protobuf_To_JSON_10000_ComplexObject
+Protobuf size in bytes: 3346164
+Json size in bytes: 7424374
+CompareSize_Of_Protobuf_To_JSON_100000_ComplexObject
+Protobuf size in bytes: 33462046
+Json size in bytes: 74244536
+CompareSize_Of_Protobuf_To_JSON_1000000_ComplexObject
+Protobuf size in bytes: 334621720
+Json size in bytes: 742446866
