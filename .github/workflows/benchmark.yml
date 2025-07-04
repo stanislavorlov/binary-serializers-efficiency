@@ -17,12 +17,19 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
+          
       - name: Run benchmark
         run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
 
+      - name: Find BenchmarkDotNet GitHub report
+        id: find_report
+        run: |
+          REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
+          echo "report_file=$REPORT" >> $GITHUB_OUTPUT
+
       - name: Store benchmark result in README.md
         run: |
-          cp BenchmarkDotNet.Artifacts/results/BinarySerializers.Benchmarking.SerializationBenchmark-report-github.md README.md
+          cp "${{ steps.find_report.outputs.report_file }}" README.md
 
       - name: Commit and push README.md
         run: |
