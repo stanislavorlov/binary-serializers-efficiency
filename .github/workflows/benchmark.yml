@@ -31,6 +31,20 @@ jobs:
            REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
            echo "report_file=$REPORT" >> $GITHUB_OUTPUT
 
+      - name: Show selected report
+        run: |
+          echo "Selected benchmark report: ${{ steps.find_report.outputs.report_file }}"
+
+      - name: Copy benchmark report
+        run: |
+          mkdir -p temp
+          cp "${{ steps.find_report.outputs.report_file }}" temp/benchmark.md
+
+      - name: Debug benchmark.md content
+        run: |
+          echo "Contents of benchmark.md:"
+          cat temp/benchmark.md
+
       - name: Store benchmark result in README.md
         run: |
           start_marker="<!-- BENCHMARK_START -->"
