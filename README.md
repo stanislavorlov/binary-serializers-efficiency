@@ -1,7 +1,9 @@
-# Binary serialization
+# Binary serialization benchmarks
 
-<img src="./img/microsoft-dot-net-icon.png" height="100" alt="Net8">
-<img src="./img/BenchmarkDotNet.png" height="100" alt="BenchmarkDotNet">
+<p align="left">
+  <img src="./img/microsoft-dot-net-icon.png" style="height: 100px;" alt="Net8">
+  <img src="./img/BenchmarkDotNet.png" style="height: 100px;" alt="BenchmarkDotNet">
+</p>
 
 Comparison analysis of Binary and Text serializers using .Net Benchmarking on different data type objects.
 The following formats are considered during the benchmarking:
