@@ -36,5 +36,5 @@ AMD EPYC 7763, 1 CPU, 4 logical and 2 physical cores
 ```
 | Method                                                       | Mean     | Error     | StdDev    | Gen0   | Allocated |
 |------------------------------------------------------------- |---------:|----------:|----------:|-------:|----------:|
-| MessagePackSerializationDeserialization_SimpleObject_Count_1 | 1.038 μs | 0.0101 μs | 0.0094 μs | 0.0420 |     712 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_1 | 1.055 μs | 0.0071 μs | 0.0067 μs | 0.0420 |     712 B |
 <!-- BENCHMARK_END -->
