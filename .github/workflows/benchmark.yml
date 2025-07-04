@@ -18,18 +18,24 @@ jobs:
         with:
           dotnet-version: '8.0.x'  # SDK Version to use. keep in line with examples/benchmarkdotnet/global.json
           
-      - name: Run benchmark
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Run Benchmark
         run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
 
-      - name: Find BenchmarkDotNet GitHub report
-        id: find_report
+      - name: Extract Benchmark Results
         run: |
-          REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
-          echo "report_file=$REPORT" >> $GITHUB_OUTPUT
+           REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
+           echo "report_file=$REPORT" >> $GITHUB_OUTPUT
 
       - name: Store benchmark result in README.md
         run: |
-          cp "${{ steps.find_report.outputs.report_file }}" README.md
+          awk '/<!-- BENCHMARK_START -->/,/<!-- BENCHMARK_END -->/ {next} {print}' README.md > temp/README.new
+          echo '<!-- BENCHMARK_START -->' >> temp/README.new
+          cat "${{ steps.find_report.outputs.report_file }}" > temp/README.new
+          echo '<!-- BENCHMARK_END -->' >> temp/README.new
+          mv temp/README.new README.md
 
       - name: Commit and push README.md
         run: |
@@ -38,6 +44,27 @@ jobs:
           git add README.md
           git commit -m "Update README from BenchmarkDotNet report [skip ci]" || echo "No changes to commit"
           git push
+
+      # - name: Run benchmark
+      #   run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
+
+      # - name: Find BenchmarkDotNet GitHub report
+      #   id: find_report
+      #   run: |
+      #     REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
+      #     echo "report_file=$REPORT" >> $GITHUB_OUTPUT
+
+      # - name: Store benchmark result in README.md
+      #   run: |
+      #     cp "${{ steps.find_report.outputs.report_file }}" README.md
+
+      # - name: Commit and push README.md
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      #     git add README.md
+      #     git commit -m "Update README from BenchmarkDotNet report [skip ci]" || echo "No changes to commit"
+      #     git push
 
       #- name: Store benchmark result
       #  uses: rhysd/github-action-benchmark@v1
