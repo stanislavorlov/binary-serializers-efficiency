@@ -14,7 +14,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1);
 
@@ -29,7 +29,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1000);
 
@@ -44,7 +44,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(10000);
 
@@ -59,7 +59,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(100000);
 
@@ -74,7 +74,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1000000);
 
@@ -89,7 +89,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetComplexObjects(1);
 
@@ -104,7 +104,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetComplexObjects(1000);
 
@@ -119,7 +119,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetComplexObjects(10000);
 
@@ -134,7 +134,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetComplexObjects(100000);
 
@@ -149,7 +149,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetComplexObjects(1000000);
 
@@ -164,7 +164,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1);
 
@@ -183,7 +183,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1000);
 
@@ -202,7 +202,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(10000);
 
@@ -221,7 +221,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(100000);
 
@@ -240,7 +240,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var deviceTelemetries = dataSource.GetSimpleObjects(1000000);
 
@@ -259,7 +259,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var invoices = dataSource.GetComplexObjects(1);
 
@@ -278,7 +278,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var invoices = dataSource.GetComplexObjects(1000);
 
@@ -297,7 +297,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var invoices = dataSource.GetComplexObjects(10000);
 
@@ -316,7 +316,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var invoices = dataSource.GetComplexObjects(100000);
 
@@ -335,7 +335,7 @@ public class SerializationCompression
     {
         Console.WriteLine(GetCurrentMethod());
 
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new();
 
         var invoices = dataSource.GetComplexObjects(1000000);
 
