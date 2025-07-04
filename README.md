@@ -20,6 +20,13 @@ The following formats are considered during the benchmarking:
 - Run a Benchmarking project using a Release configuration `dotnet run -c Release`
 - Navigate to `BenchmarkDotNet.Artifacts` folder and obtain results or check the Console
 
+## Comparison results
+
+| Serialization size    | Serialization speed |
+| -------- | ------- |
+| <img src="./img/Size comparison.png" style="height: 500px" alt="Message size">  | <img src="./img/Speed comparison.png" style="height: 500px" alt="Serialization speed"> |
+
+
 ## 📊 Benchmark Results
 
 <!-- BENCHMARK_START -->
