@@ -21,5 +21,5 @@ The following formats are considered during the benchmarking:
 ## 📊 Benchmark Results
 
 <!-- BENCHMARK_START -->
-<!-- Results will be inserted here -->
+
 <!-- BENCHMARK_END -->
