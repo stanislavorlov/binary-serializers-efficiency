@@ -47,7 +47,7 @@ public class SerializationBenchmark
         var deserializedItem = MessagePackSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[100]);
@@ -80,7 +80,7 @@ public class SerializationBenchmark
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[1000000]);
         var deserializedItem = MessagePackSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
-    }
+    }*/
 
     [Benchmark]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_1()
@@ -96,7 +96,7 @@ public class SerializationBenchmark
         var deserializedItem = MessagePackSerializer.Deserialize<Invoice[]>(serializedBytes);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_100()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[100]);
@@ -129,7 +129,7 @@ public class SerializationBenchmark
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[1000000]);
         var deserializedItem = MessagePackSerializer.Deserialize<Invoice[]>(serializedBytes);
-    }
+    }*/
 
     #endregion
 
@@ -149,7 +149,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void JsonSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[100]);
@@ -182,7 +182,7 @@ public class SerializationBenchmark
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[1000000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
-    }
+    }*/
 
     [Benchmark]
     public void JsonSerializationDeserialization_ComplexObject_Count_1()
@@ -198,7 +198,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void JsonSerializationDeserialization_ComplexObject_Count_100()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[100]);
@@ -231,7 +231,7 @@ public class SerializationBenchmark
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[1000000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
-    }
+    }*/
 
     #endregion
 
@@ -259,7 +259,7 @@ public class SerializationBenchmark
         var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_100()
     {
         byte[] protoSerialized;
@@ -312,7 +312,7 @@ public class SerializationBenchmark
         protoSerialized = stream.ToArray();
 
         var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
-    }
+    }*/
 
     [Benchmark]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_1()
@@ -336,7 +336,7 @@ public class SerializationBenchmark
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
     }
 
-    [Benchmark]
+    /*[Benchmark]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_100()
     {
         byte[] protoSerialized;
@@ -389,7 +389,7 @@ public class SerializationBenchmark
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
-    }
+    }*/
 
     #endregion
 }
