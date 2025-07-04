@@ -26,6 +26,7 @@ jobs:
 
       - name: Extract Benchmark Results
         run: |
+           mkdir temp
            REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
            echo "report_file=$REPORT" >> $GITHUB_OUTPUT
 
