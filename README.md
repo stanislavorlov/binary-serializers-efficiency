@@ -35,54 +35,68 @@ The following formats are considered during the benchmarking:
 
 BenchmarkDotNet v0.15.2, Linux Ubuntu 24.04.2 LTS (Noble Numbat)
 AMD EPYC 7763, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 8.0.411
-  [Host]     : .NET 8.0.17 (8.0.1725.26602), X64 RyuJIT AVX2
-  DefaultJob : .NET 8.0.17 (8.0.1725.26602), X64 RyuJIT AVX2
+.NET SDK 8.0.412
+  [Host]     : .NET 8.0.18 (8.0.1825.31117), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.18 (8.0.1825.31117), X64 RyuJIT AVX2
 
 
 ```
-| Method                                                              | Mean                | Error            | StdDev           | Gen0        | Gen1        | Gen2      | Allocated    |
-|-------------------------------------------------------------------- |--------------------:|-----------------:|-----------------:|------------:|------------:|----------:|-------------:|
-| MessagePackSerializationDeserialization_SimpleObject_Count_1        |          1,049.5 ns |          8.95 ns |          7.94 ns |      0.0420 |           - |         - |        712 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_10       |          9,135.7 ns |         56.12 ns |         49.75 ns |      0.4120 |           - |         - |       6976 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_100      |         87,624.8 ns |        578.61 ns |        512.92 ns |      4.0283 |      0.4883 |         - |      69256 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_1000     |        828,256.2 ns |      5,467.30 ns |      4,846.62 ns |     41.0156 |     16.6016 |         - |     692056 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_10000    |      9,844,625.2 ns |    178,477.23 ns |    166,947.71 ns |    359.3750 |    265.6250 |         - |    6920056 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_100000   |    123,003,550.0 ns |  2,104,732.87 ns |  1,865,790.87 ns |   3000.0000 |   2000.0000 |         - |   69200056 B |
-| MessagePackSerializationDeserialization_SimpleObject_Count_1000000  |  1,414,193,227.3 ns | 18,618,074.94 ns | 16,504,438.50 ns |  40000.0000 |  39000.0000 |         - |  766273880 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_1       |          2,881.9 ns |         17.71 ns |         16.56 ns |      0.0954 |           - |         - |       1624 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_10      |         26,249.9 ns |        161.88 ns |        151.42 ns |      0.9460 |      0.0305 |         - |      16120 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_100     |        248,773.2 ns |      1,100.78 ns |        975.81 ns |      9.2773 |      1.4648 |         - |     160752 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_1000    |      2,514,969.0 ns |     20,788.73 ns |     18,428.67 ns |     74.2188 |     35.1563 |         - |    1607056 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_10000   |     28,344,274.6 ns |    242,922.50 ns |    215,344.47 ns |    750.0000 |    718.7500 |         - |   16070056 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_100000  |    304,101,010.1 ns |  2,466,473.38 ns |  2,059,616.98 ns |   8000.0000 |   7000.0000 |         - |  181227832 B |
-| MessagePackSerializationDeserialization_ComplexObject_Count_1000000 |  4,031,995,860.2 ns | 20,401,065.09 ns | 18,085,012.82 ns |  95000.0000 |  94000.0000 | 1000.0000 | 1900816872 B |
-| JsonSerializationDeserialization_SimpleObject_Count_1               |          5,555.9 ns |         40.83 ns |         36.19 ns |      0.3815 |           - |         - |       6496 B |
-| JsonSerializationDeserialization_SimpleObject_Count_10              |         48,755.6 ns |        233.72 ns |        207.18 ns |      2.1362 |      0.0610 |         - |      36520 B |
-| JsonSerializationDeserialization_SimpleObject_Count_100             |        450,593.8 ns |      3,264.88 ns |      2,894.23 ns |     17.5781 |      3.4180 |         - |     295360 B |
-| JsonSerializationDeserialization_SimpleObject_Count_1000            |      4,550,215.4 ns |     32,095.87 ns |     28,452.15 ns |    101.5625 |     31.2500 |         - |    2892968 B |
-| JsonSerializationDeserialization_SimpleObject_Count_10000           |     56,765,115.1 ns |    412,356.87 ns |    365,543.63 ns |   1000.0000 |    444.4444 |         - |   28922648 B |
-| JsonSerializationDeserialization_SimpleObject_Count_100000          |    614,503,896.5 ns |  6,493,642.33 ns |  5,422,485.45 ns |  10000.0000 |   9000.0000 |         - |  288549992 B |
-| JsonSerializationDeserialization_SimpleObject_Count_1000000         |  6,486,839,012.4 ns | 73,151,685.29 ns | 64,847,063.65 ns | 103000.0000 | 102000.0000 | 1000.0000 | 2881195104 B |
-| JsonSerializationDeserialization_ComplexObject_Count_1              |          9,645.1 ns |         53.83 ns |         47.72 ns |      0.6714 |           - |         - |      11240 B |
-| JsonSerializationDeserialization_ComplexObject_Count_10             |         90,233.3 ns |        755.02 ns |        706.25 ns |      4.3945 |      0.2441 |         - |      75448 B |
-| JsonSerializationDeserialization_ComplexObject_Count_100            |        878,818.8 ns |      4,378.87 ns |      3,656.55 ns |     24.4141 |      3.9063 |         - |     714424 B |
-| JsonSerializationDeserialization_ComplexObject_Count_1000           |      8,804,818.5 ns |     51,018.29 ns |     45,226.38 ns |    187.5000 |     78.1250 |         - |    6987704 B |
-| JsonSerializationDeserialization_ComplexObject_Count_10000          |     91,776,520.6 ns |  1,604,877.77 ns |  1,717,201.23 ns |   1833.3333 |   1166.6667 |         - |   69919552 B |
-| JsonSerializationDeserialization_ComplexObject_Count_100000         |    975,405,495.3 ns |  6,213,584.14 ns |  5,812,190.47 ns |  19000.0000 |  14000.0000 |         - |  698491712 B |
-| JsonSerializationDeserialization_ComplexObject_Count_1000000        | 10,229,448,419.1 ns | 91,892,895.69 ns | 81,460,658.53 ns | 195000.0000 | 139000.0000 | 2000.0000 | 6980600400 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_1           |            989.5 ns |          4.99 ns |          4.43 ns |      0.0343 |           - |         - |        584 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_10          |          6,901.9 ns |         42.99 ns |         40.21 ns |      0.1450 |           - |         - |       2512 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_100         |         67,752.7 ns |        219.92 ns |        183.64 ns |      2.6855 |           - |         - |      45248 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_1000        |        660,229.6 ns |        878.43 ns |        685.82 ns |      9.7656 |           - |         - |     395168 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_10000       |      6,859,313.0 ns |     21,520.61 ns |     16,801.88 ns |     31.2500 |           - |         - |    3444040 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_100000      |     68,908,098.0 ns |    636,144.25 ns |    563,925.31 ns |    142.8571 |           - |         - |   46754856 B |
-| ProtobufSerializationDeserialization_SimpleObject_Count_1000000     |    672,166,787.7 ns |  2,746,282.08 ns |  2,293,269.92 ns |   2000.0000 |           - |         - |  401754872 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_1          |          1,038.0 ns |          6.88 ns |          5.74 ns |      0.0343 |           - |         - |        592 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_10         |          7,144.9 ns |         26.72 ns |         24.99 ns |      0.1450 |           - |         - |       2512 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_100        |         63,930.1 ns |        879.68 ns |        779.81 ns |      2.6855 |      0.1221 |         - |      45200 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_1000       |        650,181.6 ns |      3,253.63 ns |      2,716.92 ns |      9.7656 |           - |         - |     394912 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_10000      |      6,452,627.0 ns |     50,703.64 ns |     39,586.06 ns |     31.2500 |           - |         - |    3446056 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_100000     |     66,958,098.2 ns |    258,773.85 ns |    202,033.60 ns |    125.0000 |           - |         - |   46787496 B |
-| ProtobufSerializationDeserialization_ComplexObject_Count_1000000    |    651,326,346.2 ns |  2,509,392.99 ns |  1,959,168.99 ns |   2000.0000 |           - |         - |  401755136 B |
+| Method                                                              | Mean              | Error          | StdDev         | Gen0        | Gen1        | Gen2      | Allocated     |
+|-------------------------------------------------------------------- |------------------:|---------------:|---------------:|------------:|------------:|----------:|--------------:|
+| MessagePackSerializationDeserialization_SimpleObject_Count_1        |          1.028 μs |      0.0072 μs |      0.0068 μs |      0.0420 |           - |         - |         712 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_10       |          8.500 μs |      0.0495 μs |      0.0439 μs |      0.4120 |           - |         - |        6976 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_100      |         80.760 μs |      0.5109 μs |      0.4529 μs |      4.0283 |      0.4883 |         - |       69256 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_1000     |        812.909 μs |      3.8171 μs |      3.3837 μs |     41.0156 |     16.6016 |         - |      692056 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_10000    |      9,068.242 μs |     65.8524 μs |     51.4132 μs |    359.3750 |    265.6250 |         - |     6920056 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_100000   |    121,289.749 μs |  2,362.6016 μs |  2,209.9790 μs |   3000.0000 |   2000.0000 |         - |    69200056 B |
+| MessagePackSerializationDeserialization_SimpleObject_Count_1000000  |  1,381,667.813 μs | 14,557.8191 μs | 12,905.1274 μs |  40000.0000 |  39000.0000 |         - |   766273856 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_1       |          2.801 μs |      0.0140 μs |      0.0125 μs |      0.0954 |           - |         - |        1624 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_10      |         25.456 μs |      0.1116 μs |      0.0989 μs |      0.9460 |      0.0305 |         - |       16120 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_100     |        246.606 μs |      1.8535 μs |      1.7338 μs |      9.2773 |      1.4648 |         - |      160752 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_1000    |      2,502.324 μs |      8.1843 μs |      6.8343 μs |     74.2188 |     35.1563 |         - |     1607056 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_10000   |     27,706.213 μs |    230.0924 μs |    203.9709 μs |    750.0000 |    718.7500 |         - |    16070056 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_100000  |    302,009.543 μs |  2,309.7054 μs |  1,803.2661 μs |   8000.0000 |   7000.0000 |         - |   181227832 B |
+| MessagePackSerializationDeserialization_ComplexObject_Count_1000000 |  3,945,771.958 μs | 54,083.5076 μs | 47,943.6208 μs |  95000.0000 |  94000.0000 | 1000.0000 |  1900816888 B |
+| JsonSerializationDeserialization_SimpleObject_Count_1               |          5.269 μs |      0.0340 μs |      0.0284 μs |      0.3815 |           - |         - |        6496 B |
+| JsonSerializationDeserialization_SimpleObject_Count_10              |         46.699 μs |      0.2056 μs |      0.1923 μs |      2.1362 |      0.0610 |         - |       36488 B |
+| JsonSerializationDeserialization_SimpleObject_Count_100             |        453.650 μs |      1.9342 μs |      1.8092 μs |     17.5781 |      2.9297 |         - |      295288 B |
+| JsonSerializationDeserialization_SimpleObject_Count_1000            |      4,451.363 μs |     15.7646 μs |     13.1642 μs |    101.5625 |     31.2500 |         - |     2892808 B |
+| JsonSerializationDeserialization_SimpleObject_Count_10000           |     54,911.651 μs |    392.4184 μs |    327.6872 μs |   1000.0000 |    444.4444 |         - |    28921480 B |
+| JsonSerializationDeserialization_SimpleObject_Count_100000          |    590,469.014 μs |  5,748.1926 μs |  5,376.8629 μs |  10000.0000 |   9000.0000 |         - |   288551920 B |
+| JsonSerializationDeserialization_SimpleObject_Count_1000000         |  6,128,334.306 μs | 42,856.5936 μs | 35,787.1966 μs | 103000.0000 | 102000.0000 | 1000.0000 |  2881179920 B |
+| JsonSerializationDeserialization_ComplexObject_Count_1              |          9.181 μs |      0.0670 μs |      0.0627 μs |      0.6714 |           - |         - |       11240 B |
+| JsonSerializationDeserialization_ComplexObject_Count_10             |         89.179 μs |      0.6256 μs |      0.5852 μs |      4.3945 |      0.2441 |         - |       75432 B |
+| JsonSerializationDeserialization_ComplexObject_Count_100            |        844.111 μs |      2.9111 μs |      2.4309 μs |     24.4141 |      3.9063 |         - |      714424 B |
+| JsonSerializationDeserialization_ComplexObject_Count_1000           |      8,665.307 μs |     19.2218 μs |     17.0396 μs |    187.5000 |     78.1250 |         - |     6987744 B |
+| JsonSerializationDeserialization_ComplexObject_Count_10000          |     89,523.197 μs |  1,650.1958 μs |  1,543.5941 μs |   1833.3333 |   1166.6667 |         - |    69919752 B |
+| JsonSerializationDeserialization_ComplexObject_Count_100000         |    945,521.519 μs |  5,031.9612 μs |  4,706.8997 μs |  19000.0000 |  14000.0000 |         - |   698489640 B |
+| JsonSerializationDeserialization_ComplexObject_Count_1000000        | 10,251,051.406 μs | 73,718.9937 μs | 65,349.9678 μs | 195000.0000 | 139000.0000 | 2000.0000 |  6980625720 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_1           |          1.099 μs |      0.0047 μs |      0.0044 μs |      0.0343 |           - |         - |         584 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_10          |          6.572 μs |      0.0215 μs |      0.0202 μs |      0.1450 |           - |         - |        2512 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_100         |         64.724 μs |      0.3713 μs |      0.3473 μs |      2.6855 |      0.1221 |         - |       45200 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_1000        |        643.943 μs |      0.7871 μs |      0.6145 μs |      9.7656 |           - |         - |      395136 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_10000       |      6,795.889 μs |     15.3443 μs |     13.6023 μs |     31.2500 |           - |         - |     3448184 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_100000      |     66,199.099 μs |    223.3578 μs |    198.0009 μs |    125.0000 |           - |         - |    46722096 B |
+| ProtobufSerializationDeserialization_SimpleObject_Count_1000000     |    665,904.604 μs |  1,882.3553 μs |  1,571.8520 μs |   2000.0000 |           - |         - |   402016792 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_1          |          1.026 μs |      0.0070 μs |      0.0065 μs |      0.0343 |           - |         - |         592 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_10         |          7.000 μs |      0.0305 μs |      0.0271 μs |      0.1450 |           - |         - |        2512 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_100        |         63.513 μs |      0.5068 μs |      0.4740 μs |      2.6855 |      0.1221 |         - |       45176 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_1000       |        650.687 μs |      1.6964 μs |      1.4166 μs |      9.7656 |      0.9766 |         - |      394648 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_10000      |      6,873.498 μs |     14.8847 μs |     13.1949 μs |     31.2500 |           - |         - |     3448192 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_100000     |     74,877.518 μs |    831.1025 μs |    736.7507 μs |    142.8571 |           - |         - |    46705840 B |
+| ProtobufSerializationDeserialization_ComplexObject_Count_1000000    |    693,106.515 μs |  2,387.7214 μs |  1,993.8555 μs |   2000.0000 |           - |         - |   402017312 B |
+| AvroSerializationDeserialization_SimpleObject_Count_1               |          3.339 μs |      0.0171 μs |      0.0152 μs |      0.2861 |           - |         - |        4832 B |
+| AvroSerializationDeserialization_SimpleObject_Count_10              |         30.648 μs |      0.2225 μs |      0.2081 μs |      2.6855 |           - |         - |       45216 B |
+| AvroSerializationDeserialization_SimpleObject_Count_100             |        313.227 μs |      1.7561 μs |      1.5567 μs |     26.3672 |      3.4180 |         - |      445240 B |
+| AvroSerializationDeserialization_SimpleObject_Count_1000            |      3,194.525 μs |     11.5707 μs |      9.6621 μs |    261.7188 |     93.7500 |         - |     4543040 B |
+| AvroSerializationDeserialization_SimpleObject_Count_10000           |     48,804.810 μs |    620.9334 μs |    580.8215 μs |   2454.5455 |   1000.0000 |         - |    44999392 B |
+| AvroSerializationDeserialization_SimpleObject_Count_100000          |    461,734.981 μs |  7,446.6926 μs |  6,601.2990 μs |  24000.0000 |   7000.0000 |         - |   445269048 B |
+| AvroSerializationDeserialization_SimpleObject_Count_1000000         |  4,615,994.613 μs | 41,794.1418 μs | 34,900.0013 μs | 249000.0000 |  74000.0000 |         - |  4549150864 B |
+| AvroSerializationDeserialization_ComplexObject_Count_1              |          9.232 μs |      0.0598 μs |      0.0530 μs |      0.6866 |           - |         - |       11592 B |
+| AvroSerializationDeserialization_ComplexObject_Count_10             |         89.965 μs |      0.3105 μs |      0.2593 μs |      6.7139 |      0.2441 |         - |      113632 B |
+| AvroSerializationDeserialization_ComplexObject_Count_100            |        898.106 μs |      6.5314 μs |      6.1095 μs |     66.4063 |     11.7188 |         - |     1116624 B |
+| AvroSerializationDeserialization_ComplexObject_Count_1000           |      9,624.074 μs |     73.7980 μs |     65.4200 μs |    609.3750 |    234.3750 |         - |    11551408 B |
+| AvroSerializationDeserialization_ComplexObject_Count_10000          |    125,300.153 μs |  2,300.4643 μs |  2,259.3636 μs |   6000.0000 |   2000.0000 |         - |   113509688 B |
+| AvroSerializationDeserialization_ComplexObject_Count_100000         |  1,206,637.573 μs |  9,624.9644 μs |  9,003.1977 μs |  60000.0000 |  18000.0000 |         - |  1117787984 B |
+| AvroSerializationDeserialization_ComplexObject_Count_1000000        | 13,464,503.154 μs | 95,196.8995 μs | 84,389.5718 μs | 610000.0000 | 189000.0000 | 2000.0000 | 11576332440 B |
 <!-- BENCHMARK_END -->
