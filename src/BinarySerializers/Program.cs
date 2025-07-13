@@ -3,10 +3,6 @@ using BenchmarkDotNet.Running;
 using BinarySerializers.Benchmarking;
 
 //---------------------- Run Benchmark ------------------------------------
-//var summary = BenchmarkRunner.Run<SerializationBenchmark>();
+var summary = BenchmarkRunner.Run<SerializationBenchmark>();
 
-//Console.WriteLine("Benchmark summary is ready");
-
-SerializationBenchmark benchmark = new SerializationBenchmark();
-benchmark.Setup();
-benchmark.AvroSerializationDeserialization_SimpleObject_Count_1();
+Console.WriteLine("Benchmark summary is ready");

@@ -459,67 +459,43 @@ public class SerializationBenchmark
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_10()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[10]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[10].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_100()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[100]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[100].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_1000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[1000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[1000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_10000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[10000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[10000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_100000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[100000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[100000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_1000000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _complexObjects[1000000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[1000000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeComplexObjectList(serializedBytes);
     }
 
     #endregion

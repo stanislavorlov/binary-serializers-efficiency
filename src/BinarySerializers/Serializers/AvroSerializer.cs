@@ -299,11 +299,6 @@ public class AvroSerializer
 
     private static decimal FromAvroDecimal(object avroDecimalObj, int scale)
     {
-        /*var bytes = (byte[])avroDecimalObj;
-        Array.Reverse(bytes);
-        var unscaled = new BigInteger(bytes);
-        return (decimal)unscaled / (decimal)Math.Pow(10, scale);*/
-
         if (avroDecimalObj is AvroDecimal avroDecimal)
         {
             return (decimal)avroDecimal.UnscaledValue / (decimal)Math.Pow(10, avroDecimal.Scale);
@@ -375,13 +370,134 @@ public class AvroSerializer
 
     public static byte[] SerializeComplexObjectList(List<Invoice> items)
     {
-        // Implement serialization logic for a list of complex objects if needed
-        throw new NotImplementedException("List of complex objects serialization is not implemented yet.");
+        using var memoryStream = new MemoryStream();
+        var writer = new BinaryEncoder(memoryStream);
+        var datumWriter = new GenericWriter<GenericRecord>(invoiceSchema);
+
+        foreach (var invoice in items)
+        {
+            var record = new GenericRecord((RecordSchema)invoiceSchema);
+
+            // Vendor record
+            var vendorSchema = ((RecordSchema)invoiceSchema)["Vendor"].Schema as RecordSchema;
+            var vendorRecord = new GenericRecord(vendorSchema);
+            vendorRecord.Add("VendorId", invoice.Vendor.VendorId);
+            vendorRecord.Add("CompanyName", invoice.Vendor.CompanyName);
+            vendorRecord.Add("ContactPerson", invoice.Vendor.ContactPerson);
+            vendorRecord.Add("Address", invoice.Vendor.Address);
+            vendorRecord.Add("Email", invoice.Vendor.Email);
+            vendorRecord.Add("Phone", invoice.Vendor.Phone);
+            vendorRecord.Add("TaxNumber", invoice.Vendor.TaxNumber);
+            vendorRecord.Add("BankAccount", invoice.Vendor.BankAccount);
+
+            // Customer record
+            var customerSchema = ((RecordSchema)invoiceSchema)["Customer"].Schema as RecordSchema;
+            var customerRecord = new GenericRecord(customerSchema);
+            customerRecord.Add("CustomerId", invoice.Customer.CustomerId);
+            customerRecord.Add("CompanyName", invoice.Customer.CompanyName);
+            customerRecord.Add("ContactPerson", invoice.Customer.ContactPerson);
+            customerRecord.Add("Address", invoice.Customer.Address);
+            customerRecord.Add("Email", invoice.Customer.Email);
+            customerRecord.Add("Phone", invoice.Customer.Phone);
+
+            // Details array
+            var itemSchema = ((ArraySchema)((RecordSchema)invoiceSchema)["Details"].Schema).ItemSchema as RecordSchema;
+            var itemRecords = invoice.Details.Select(item =>
+            {
+                var itemRecord = new GenericRecord(itemSchema);
+                itemRecord.Add("Description", item.Description);
+                itemRecord.Add("Quantity", item.Quantity);
+                itemRecord.Add("UnitPrice", ToAvroDecimal(item.UnitPrice, scale: 2));
+                itemRecord.Add("TaxRate", ToAvroDecimal(item.TaxRate, scale: 4));
+                return itemRecord;
+            }).ToArray();
+
+            // Main invoice record
+            var invoiceDateTotalTicks = invoice.InvoiceDate.ToUniversalTime().Ticks / TimeSpan.TicksPerMillisecond;
+            var invoiceDueTotalTicks = invoice.DueDate.ToUniversalTime().Ticks / TimeSpan.TicksPerMillisecond;
+
+            record.Add("Id", invoice.Id);
+            record.Add("InvoiceNumber", invoice.InvoiceNumber);
+            record.Add("InvoiceDate", invoiceDateTotalTicks);
+            record.Add("DueDate", invoiceDueTotalTicks);
+            record.Add("Vendor", vendorRecord);
+            record.Add("Customer", customerRecord);
+            record.Add("Details", itemRecords);
+            record.Add("Notes", invoice.Notes);
+
+            datumWriter.Write(record, writer);
+        }
+
+        writer.Flush();
+
+        return memoryStream.ToArray();
     }
 
     public static Invoice[] DeserializeComplexObjectList(byte[] buffer)
     {
-        // Implement deserialization logic for a list of complex objects if needed
-        throw new NotImplementedException("List of complex objects deserialization is not implemented yet.");
+        using var ms = new MemoryStream(buffer);
+        var reader = new BinaryDecoder(ms);
+        var datumReader = new GenericReader<GenericRecord>(invoiceSchema, invoiceSchema);
+
+        var records = new List<Invoice>();
+        while (ms.Position < ms.Length)
+        {
+            var deserializedRecord = datumReader.Read((GenericRecord?)null, reader);
+
+            // ───── Parse Vendor ─────
+            var vendorRecord = (GenericRecord)deserializedRecord["Vendor"];
+            var vendor = new Vendor
+            {
+                VendorId = (int)vendorRecord["VendorId"],
+                CompanyName = (string)vendorRecord["CompanyName"],
+                ContactPerson = (string)vendorRecord["ContactPerson"],
+                Address = (string)vendorRecord["Address"],
+                Email = (string)vendorRecord["Email"],
+                Phone = (string)vendorRecord["Phone"],
+                TaxNumber = (string)vendorRecord["TaxNumber"],
+                BankAccount = (string)vendorRecord["BankAccount"]
+            };
+
+            // ───── Parse Customer ─────
+            var customerRecord = (GenericRecord)deserializedRecord["Customer"];
+            var customer = new Customer
+            {
+                CustomerId = (int)customerRecord["CustomerId"],
+                CompanyName = (string)customerRecord["CompanyName"],
+                ContactPerson = (string)customerRecord["ContactPerson"],
+                Address = (string)customerRecord["Address"],
+                Email = (string)customerRecord["Email"],
+                Phone = (string)customerRecord["Phone"]
+            };
+
+            // ───── Parse InvoiceItems ─────
+            var details = ((IList<object>)deserializedRecord["Details"])
+                .Cast<GenericRecord>()
+                .Select(r => new InvoiceItem
+                {
+                    Description = (string)r["Description"],
+                    Quantity = (int)r["Quantity"],
+                    UnitPrice = FromAvroDecimal(r["UnitPrice"], scale: 2),
+                    TaxRate = FromAvroDecimal(r["TaxRate"], scale: 4)
+                })
+                .ToList();
+
+            // ───── Construct Invoice ─────
+            var invoice = new Invoice
+            {
+                Id = (int)deserializedRecord["Id"],
+                InvoiceNumber = (string)deserializedRecord["InvoiceNumber"],
+                InvoiceDate = DateTimeOffset.FromUnixTimeMilliseconds((long)deserializedRecord["InvoiceDate"]).UtcDateTime,
+                DueDate = DateTimeOffset.FromUnixTimeMilliseconds((long)deserializedRecord["DueDate"]).UtcDateTime,
+                Vendor = vendor,
+                Customer = customer,
+                Details = details,
+                Notes = (string)deserializedRecord["Notes"]
+            };
+
+            records.Add(invoice);
+        }
+
+        return records.ToArray();
     }
 }
