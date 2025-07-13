@@ -403,88 +403,57 @@ public class SerializationBenchmark
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_1()
     {
-        // https://github.com/mjul/avro-dotnet-lab/blob/master/src/csharp/AvroCSharp/Program.cs
-        // https://chatgpt.com/c/68727dd7-a858-8010-a279-562bb2094b63
-
-        byte[] serializedBytes = AvroSerializer<DeviceTelemetry>.SerializeSimpleObject(_simpleObjects[1].First());
-        var deserializedItem = AvroSerializer<DeviceTelemetry>.DeserializeSimpleObject(serializedBytes);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObject(_simpleObjects[1].First());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObject(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_10()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[10]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[10].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_100()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[100]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[100].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_1000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[1000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[1000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_10000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[10000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[10000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_100000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[100000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[100000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_SimpleObject_Count_1000000()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[1000000]);
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetries = Serializer.Deserialize<DeviceTelemetry[]>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[1000000].ToList());
+        var deserializedItem = AvroSerializer.DeserializeSimpleObjectList(serializedBytes);
     }
 
     [Benchmark]
     public void AvroSerializationDeserialization_ComplexObject_Count_1()
     {
-        byte[] protoSerialized;
-        using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[1].First());
-        protoSerialized = stream.ToArray();
-
-        var deviceTelemetry = Serializer.Deserialize<Invoice>(stream);
+        byte[] serializedBytes = AvroSerializer.SerializeComplexObject(_complexObjects[1].First());
+        var deserializedItem = AvroSerializer.DeserializeComplexObject(serializedBytes);
     }
 
     [Benchmark]
@@ -492,7 +461,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[10]);
+        Serializer.Serialize(stream, _complexObjects[10]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
@@ -503,7 +472,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[100]);
+        Serializer.Serialize(stream, _complexObjects[100]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
@@ -514,7 +483,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[1000]);
+        Serializer.Serialize(stream, _complexObjects[1000]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
@@ -525,7 +494,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[10000]);
+        Serializer.Serialize(stream, _complexObjects[10000]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
@@ -536,7 +505,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[100000]);
+        Serializer.Serialize(stream, _complexObjects[100000]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);
@@ -547,7 +516,7 @@ public class SerializationBenchmark
     {
         byte[] protoSerialized;
         using var stream = new MemoryStream();
-        Serializer.Serialize(stream, _simpleObjects[1000000]);
+        Serializer.Serialize(stream, _complexObjects[1000000]);
         protoSerialized = stream.ToArray();
 
         var deviceTelemetry = Serializer.Deserialize<Invoice[]>(stream);

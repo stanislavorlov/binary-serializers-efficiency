@@ -13,6 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="protobuf-net" Version="3.2.52" />
     <PackageReference Include="Apache.Avro" Version="1.11.0" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
 
 </Project>
