@@ -4,11 +4,6 @@ using BinarySerializers.DataContracts;
 using BinarySerializers.Serializers;
 using MessagePack;
 using ProtoBuf;
-using Avro;
-using Avro.File;
-using Avro.Generic;
-using Avro.Specific;
-using Avro.IO;
 
 namespace BinarySerializers.Benchmarking;
 
