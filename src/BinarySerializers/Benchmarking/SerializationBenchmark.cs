@@ -149,7 +149,7 @@ public class SerializationBenchmark
 
     #region JSON
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "One")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1()
     {
@@ -157,7 +157,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "Ten")]
     public void JsonSerializationDeserialization_SimpleObject_Count_10()
     {
@@ -165,7 +165,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "Hundred")]
     public void JsonSerializationDeserialization_SimpleObject_Count_100()
     {
@@ -173,7 +173,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "Thousand")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1000()
     {
@@ -181,7 +181,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "TenThousands")]
     public void JsonSerializationDeserialization_SimpleObject_Count_10000()
     {
@@ -189,7 +189,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "HundredThousands")]
     public void JsonSerializationDeserialization_SimpleObject_Count_100000()
     {
@@ -197,7 +197,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Simple", "Million")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1000000()
     {
@@ -205,7 +205,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "One")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1()
     {
@@ -213,7 +213,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "Ten")]
     public void JsonSerializationDeserialization_ComplexObject_Count_10()
     {
@@ -221,7 +221,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "Hundred")]
     public void JsonSerializationDeserialization_ComplexObject_Count_100()
     {
@@ -229,7 +229,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "Thousand")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1000()
     {
@@ -237,7 +237,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "TenThousands")]
     public void JsonSerializationDeserialization_ComplexObject_Count_10000()
     {
@@ -245,7 +245,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "HundredThousands")]
     public void JsonSerializationDeserialization_ComplexObject_Count_100000()
     {
@@ -253,7 +253,7 @@ public class SerializationBenchmark
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     [BenchmarkCategory("Complex", "Million")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1000000()
     {
