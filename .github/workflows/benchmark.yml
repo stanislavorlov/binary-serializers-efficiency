@@ -21,24 +21,62 @@ jobs:
       - name: Restore Dependencies
         run: cd src/BinarySerializers && dotnet restore
 
-      - name: Run Benchmark
+      - name: Run Benchmark & Serialization Compression reports
         run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
 
-      - name: Extract Benchmark Results
-        id: find_report
+      - name: Extract Serialization Compression Results
+        id: find_compression_report
         run: |
            mkdir temp
+           REPORT=$(find . -type f -name 'serialization_compression.md' | head -n 1)
+           echo "compression_file=$REPORT" >> $GITHUB_OUTPUT
+
+      - name: Show compression report
+        run: |
+          echo "Selected compression report: ${{ steps.find_compression_report.outputs.compression_file }}"
+
+      - name: Copy compression report
+        run: |
+          mkdir -p temp
+          cp "${{ steps.find_compression_report.outputs.compression_file }}" temp/compression.md
+
+      - name: Store compression result in README.md
+        run: |
+          start_marker="<!-- COMPRESSION_START -->"
+          end_marker="<!-- COMPRESSION_END -->"
+          temp_file="temp/README.new"
+
+          awk -v s="$start_marker" -v e="$end_marker" '
+            BEGIN {in_section=0}
+            $0 ~ s {print; print ""; while ((getline line < "temp/compression.md") > 0) print line; in_section=1; next}
+            $0 ~ e {in_section=0}
+            !in_section {print}
+          ' README.md > "$temp_file"
+
+          mv "$temp_file" README.md
+
+      - name: Commit README.md
+        run: |
+           git config user.name "github-actions[bot]"
+           git config user.email "github-actions[bot]@users.noreply.github.com"
+           git add README.md
+           git commit -m "Update README from Compression size report [skip ci]" || echo "No changes to commit"
+
+      - name: Extract Benchmark Results
+        id: find_benchmark_report
+        run: |
+           mkdir -p temp
            REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
            echo "report_file=$REPORT" >> $GITHUB_OUTPUT
 
       - name: Show selected report
         run: |
-          echo "Selected benchmark report: ${{ steps.find_report.outputs.report_file }}"
+          echo "Selected benchmark report: ${{ steps.find_benchmark_report.outputs.report_file }}"
 
       - name: Copy benchmark report
         run: |
           mkdir -p temp
-          cp "${{ steps.find_report.outputs.report_file }}" temp/benchmark.md
+          cp "${{ steps.find_benchmark_report.outputs.report_file }}" temp/benchmark.md
 
       - name: Debug benchmark.md content
         run: |
@@ -67,53 +105,3 @@ jobs:
           git add README.md
           git commit -m "Update README from BenchmarkDotNet report [skip ci]" || echo "No changes to commit"
           git push
-
-      # - name: Run benchmark
-      #   run: cd src/BinarySerializers && dotnet run -c Release --exporters json --filter '*'
-
-      # - name: Find BenchmarkDotNet GitHub report
-      #   id: find_report
-      #   run: |
-      #     REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
-      #     echo "report_file=$REPORT" >> $GITHUB_OUTPUT
-
-      # - name: Store benchmark result in README.md
-      #   run: |
-      #     cp "${{ steps.find_report.outputs.report_file }}" README.md
-
-      # - name: Commit and push README.md
-      #   run: |
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "github-actions[bot]@users.noreply.github.com"
-      #     git add README.md
-      #     git commit -m "Update README from BenchmarkDotNet report [skip ci]" || echo "No changes to commit"
-      #     git push
-
-      #- name: Store benchmark result
-      #  uses: rhysd/github-action-benchmark@v1
-      #  with:
-      #    name: Benchmark.Net Benchmark
-      #    tool: 'benchmarkdotnet'
-      #    output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
-      #    github-token: ${{ secrets.GITHUB_TOKEN }}
-      #    auto-push: true
-      #    # Show alert with commit comment on detecting possible performance regression
-      #    alert-threshold: '200%'
-      #    comment-on-alert: true
-      #    fail-on-alert: true
-      #    alert-comment-cc-users: '@ktrz'
-
-      #- name: Store benchmark result - separate results repo
-      #  uses: rhysd/github-action-benchmark@v1
-      #  with:
-      #    name: Benchmark.Net Benchmark
-      #    tool: 'benchmarkdotnet'
-      #    output-file-path: examples/benchmarkdotnet/BenchmarkDotNet.Artifacts/results/Sample.Benchmarks-report-full-compressed.json
-      #    github-token: ${{ secrets.BENCHMARK_ACTION_BOT_TOKEN }}
-      #    auto-push: true
-      #    # Show alert with commit comment on detecting possible performance regression
-      #    alert-threshold: '200%'
-      #    comment-on-alert: true
-      #    fail-on-alert: true
-      #    alert-comment-cc-users: '@ktrz'
-      #    gh-repository: 'github.com/benchmark-action/github-action-benchmark-results'

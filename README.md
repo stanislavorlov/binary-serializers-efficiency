@@ -27,7 +27,13 @@ The following formats are considered during the benchmarking:
 | <img src="./img/Size comparison.png" style="height: 500px" alt="Message size">  | <img src="./img/Speed comparison.png" style="height: 500px" alt="Serialization speed"> |
 
 
-## 📊 Benchmark Results
+### Compression size
+
+<!-- COMPRESSION_START -->
+
+<!-- COMPRESSION_END -->
+
+### 📊 Benchmark Results
 
 <!-- BENCHMARK_START -->
 

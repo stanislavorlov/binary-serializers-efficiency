@@ -34,6 +34,7 @@ public class SerializationBenchmark
     #region MessagePack
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "One")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_1()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry), _simpleObjects[1].First());
@@ -41,6 +42,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Ten")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_10()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[10]);
@@ -48,6 +50,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Hundred")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[100]);
@@ -55,6 +58,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Thousand")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_1000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[1000]);
@@ -62,6 +66,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "TenThousands")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_10000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[10000]);
@@ -69,6 +74,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "HundredThousands")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_100000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[100000]);
@@ -76,6 +82,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Million")]
     public void MessagePackSerializationDeserialization_SimpleObject_Count_1000000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(DeviceTelemetry[]), _simpleObjects[1000000]);
@@ -83,6 +90,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "One")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_1()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice), _complexObjects[1].First());
@@ -90,6 +98,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Ten")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_10()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[10]);
@@ -97,6 +106,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Hundred")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_100()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[100]);
@@ -104,6 +114,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Thousand")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_1000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[1000]);
@@ -111,6 +122,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "TenThousands")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_10000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[10000]);
@@ -118,6 +130,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "HundredThousands")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_100000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[100000]);
@@ -125,6 +138,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Million")]
     public void MessagePackSerializationDeserialization_ComplexObject_Count_1000000()
     {
         var serializedBytes = MessagePackSerializer.Serialize(typeof(Invoice[]), _complexObjects[1000000]);
@@ -135,98 +149,112 @@ public class SerializationBenchmark
 
     #region JSON
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "One")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[1].First());
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "Ten")]
     public void JsonSerializationDeserialization_SimpleObject_Count_10()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[10]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "Hundred")]
     public void JsonSerializationDeserialization_SimpleObject_Count_100()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[100]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "Thousand")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[1000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "TenThousands")]
     public void JsonSerializationDeserialization_SimpleObject_Count_10000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[10000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "HundredThousands")]
     public void JsonSerializationDeserialization_SimpleObject_Count_100000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[100000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Simple", "Million")]
     public void JsonSerializationDeserialization_SimpleObject_Count_1000000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_simpleObjects[1000000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "One")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[1].First());
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "Ten")]
     public void JsonSerializationDeserialization_ComplexObject_Count_10()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[10]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "Hundred")]
     public void JsonSerializationDeserialization_ComplexObject_Count_100()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[100]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "Thousand")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[1000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "TenThousands")]
     public void JsonSerializationDeserialization_ComplexObject_Count_10000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[10000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "HundredThousands")]
     public void JsonSerializationDeserialization_ComplexObject_Count_100000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[100000]);
         var deserialized = JsonSerializer.Deserialize<DeviceTelemetry[]>(serializedBytes);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Complex", "Million")]
     public void JsonSerializationDeserialization_ComplexObject_Count_1000000()
     {
         var serializedBytes = JsonSerializer.SerializeToUtf8Bytes(_complexObjects[1000000]);
@@ -238,6 +266,7 @@ public class SerializationBenchmark
     #region Protobuf
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "One")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_1()
     {
         byte[] protoSerialized;
@@ -249,6 +278,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Ten")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_10()
     {
         byte[] protoSerialized;
@@ -260,6 +290,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Hundred")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_100()
     {
         byte[] protoSerialized;
@@ -271,6 +302,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Thousand")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_1000()
     {
         byte[] protoSerialized;
@@ -282,6 +314,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "TenThousands")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_10000()
     {
         byte[] protoSerialized;
@@ -293,6 +326,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "HundredThousands")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_100000()
     {
         byte[] protoSerialized;
@@ -304,6 +338,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Million")]
     public void ProtobufSerializationDeserialization_SimpleObject_Count_1000000()
     {
         byte[] protoSerialized;
@@ -315,6 +350,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "One")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_1()
     {
         byte[] protoSerialized;
@@ -326,6 +362,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Ten")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_10()
     {
         byte[] protoSerialized;
@@ -337,6 +374,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Hundred")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_100()
     {
         byte[] protoSerialized;
@@ -348,6 +386,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Thousand")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_1000()
     {
         byte[] protoSerialized;
@@ -359,6 +398,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "TenThousands")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_10000()
     {
         byte[] protoSerialized;
@@ -370,6 +410,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "HundredThousands")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_100000()
     {
         byte[] protoSerialized;
@@ -381,6 +422,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Million")]
     public void ProtobufSerializationDeserialization_ComplexObject_Count_1000000()
     {
         byte[] protoSerialized;
@@ -396,6 +438,7 @@ public class SerializationBenchmark
     #region Apache Avro
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "One")]
     public void AvroSerializationDeserialization_SimpleObject_Count_1()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObject(_simpleObjects[1].First());
@@ -403,6 +446,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Ten")]
     public void AvroSerializationDeserialization_SimpleObject_Count_10()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[10].ToList());
@@ -410,6 +454,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Hundred")]
     public void AvroSerializationDeserialization_SimpleObject_Count_100()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[100].ToList());
@@ -417,6 +462,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Thousand")]
     public void AvroSerializationDeserialization_SimpleObject_Count_1000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[1000].ToList());
@@ -424,6 +470,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "TenThousands")]
     public void AvroSerializationDeserialization_SimpleObject_Count_10000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[10000].ToList());
@@ -431,6 +478,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "HundredThousands")]
     public void AvroSerializationDeserialization_SimpleObject_Count_100000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[100000].ToList());
@@ -438,6 +486,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Simple", "Million")]
     public void AvroSerializationDeserialization_SimpleObject_Count_1000000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeSimpleObjectList(_simpleObjects[1000000].ToList());
@@ -445,6 +494,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "One")]
     public void AvroSerializationDeserialization_ComplexObject_Count_1()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObject(_complexObjects[1].First());
@@ -452,6 +502,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Ten")]
     public void AvroSerializationDeserialization_ComplexObject_Count_10()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[10].ToList());
@@ -459,6 +510,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Hundred")]
     public void AvroSerializationDeserialization_ComplexObject_Count_100()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[100].ToList());
@@ -466,6 +518,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Thousand")]
     public void AvroSerializationDeserialization_ComplexObject_Count_1000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[1000].ToList());
@@ -473,6 +526,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "TenThousands")]
     public void AvroSerializationDeserialization_ComplexObject_Count_10000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[10000].ToList());
@@ -480,6 +534,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "HundredThousands")]
     public void AvroSerializationDeserialization_ComplexObject_Count_100000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[100000].ToList());
@@ -487,6 +542,7 @@ public class SerializationBenchmark
     }
 
     [Benchmark]
+    [BenchmarkCategory("Complex", "Million")]
     public void AvroSerializationDeserialization_ComplexObject_Count_1000000()
     {
         byte[] serializedBytes = AvroSerializer.SerializeComplexObjectList(_complexObjects[1000000].ToList());
