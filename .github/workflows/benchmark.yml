@@ -37,7 +37,6 @@ jobs:
 
       - name: Copy compression report
         run: |
-          mkdir -p temp
           cp "${{ steps.find_compression_report.outputs.compression_file }}" temp/compression.md
 
       - name: Store compression result in README.md
@@ -65,7 +64,6 @@ jobs:
       - name: Extract Benchmark Results
         id: find_benchmark_report
         run: |
-           mkdir -p temp
            REPORT=$(find . -type f -name '*-report-github.md' | head -n 1)
            echo "report_file=$REPORT" >> $GITHUB_OUTPUT
 
@@ -75,7 +73,6 @@ jobs:
 
       - name: Copy benchmark report
         run: |
-          mkdir -p temp
           cp "${{ steps.find_benchmark_report.outputs.report_file }}" temp/benchmark.md
 
       - name: Debug benchmark.md content
